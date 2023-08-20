@@ -4,22 +4,12 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Noto Sans", sans-serif;
-}
-
-ul {
+  font-family: "Libre Franklin" !important;
   list-style: none;
 }
 
-a {
-  color: unset;
-  text-decoration: unset;
-  cursor: pointer;
-}
-
-body {
-  background-color: rgba(255, 0, 0, 1);
-  background-image: radial-gradient(
+[data-theme="light"] {
+  --bg-image: radial-gradient(
       at 0% 100%,
       rgba(255, 184, 122, 1) 0%,
       transparent 50%
@@ -31,34 +21,47 @@ body {
     radial-gradient(at 79% 49%, rgba(223, 91, 230, 1) 0%, transparent 50%),
     radial-gradient(at 62% 41%, rgba(242, 187, 140, 1) 0%, transparent 86%),
     radial-gradient(at 0% 46%, rgba(255, 219, 222, 1) 0%, transparent 100%);
+  --fg-color: #000;
+  --button-border-color: #000;
+  --button-bg-color: rgba(255, 255, 255, 0.2);
+  --button-fg-color: #000;
+  --div-bg-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] {
+  --bg-image: radial-gradient(
+      at 0% 100%,
+      rgb(151, 89, 35) 0%,
+      rgba(19, 19, 19, 0) 50%
+    ),
+    radial-gradient(at 83% 0%, rgb(47, 186, 210) 0%, rgba(19, 19, 19, 0) 55%),
+    radial-gradient(at 0% 0%, rgb(135, 26, 62) 0%, rgba(19, 19, 19, 0) 50%),
+    radial-gradient(at 28% 0%, rgb(139, 72, 32) 0%, rgba(19, 19, 19, 0) 50%),
+    radial-gradient(
+      at 82% 100%,
+      rgba(26, 22, 148, 0.79) 0%,
+      rgba(19, 19, 19, 0) 68%
+    ),
+    radial-gradient(at 79% 49%, rgb(152, 51, 158) 0%, rgba(19, 19, 19, 0) 50%),
+    radial-gradient(at 62% 41%, rgb(136, 87, 46) 0%, rgba(19, 19, 19, 0) 86%),
+    radial-gradient(at 0% 46%, rgb(87, 23, 28) 0%, rgba(19, 19, 19, 0) 100%);
+  --fg-color: #fff;
+  --button-border-color: rgba(46, 48, 49, 0.7);
+  --button-bg-color: rgba(46, 48, 49, 0.2);
+  --button-fg-color: #fff;
+  --div-bg-color: rgba(46, 48, 49, 0.2);
+}
+
+body {
+  background-image: var(--bg-image);
+  color: var(--fg-color);
   display: flex;
-  color: black;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  min-width: 100%;
+  min-width: 100vw;
   text-align: center;
-  padding: 30px;
-  position: relative;
-}
-
-h1 {
-  font-weight: 400;
-  font-size: 3.5rem;
-  margin-bottom: 5px;
-}
-p,
-span {
-  margin: 5px 0;
-  font-weight: 200;
-  font-size: 20px;
-}
-h2 {
-  margin-top: 5px;
-  font-weight: 100;
-  font-size: 24px;
-  margin-bottom: 10px;
+  padding: 3rem;
 }
 .div {
   min-width: 50%;
@@ -67,27 +70,46 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.2);
+  gap: 0.8rem;
+  background-color: var(--div-bg-color);
   border-radius: 1.5rem;
-  backdrop-filter: blur(50px);
-  padding: 10px;
-  position: relative;
+  backdrop-filter: saturate(0.6);
+  padding: 1rem;
+  box-shadow: 0 0.9rem 1.1rem rgba(34, 34, 34, 0.467);
+}
+h1 {
+  font-weight: 800;
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+h2 {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+p,
+span {
+  margin: 0.5rem 0;
+  font-weight: 400;
+  font-size: 2rem;
 }
 ul.skill {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
   width: 100%;
+  font-weight: 400;
+  font-size: 1.4rem;
 }
 ul.skill > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
-  margin-top: 5px;
+  width: 50%;
+  margin-top: 0.5rem;
 }
 ul.skill > div > li {
   width: 50%;
@@ -96,65 +118,42 @@ ul.contact {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 1rem;
   flex-wrap: wrap;
+  font-weight: 600;
+  font-size: 1.4rem;
 }
 ul.contact > a > li {
-  width: 50%;
+  width: 100%;
 }
 ul.contact > a {
-  text-decoration: solid black underline;
+  text-decoration: solid var(--fg-color) underline;
 }
 button {
-  background-color: rgba(255, 255, 255, 0.2);
-  border: solid black 1px;
-  border-radius: 2px;
-  padding: 5px 10px;
+  background-color: var(--button-bg-color);
+  border: solid var(--button-border-color) 0.1rem;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  color: var(--button-fg-color);
+  cursor: pointer;
 }
-@media screen and (max-width: 425px) {
+.footer,
+#year {
+  font-weight: 300;
+}
+@media screen and (max-width: 26.563em) {
   h1 {
     font-size: 2.5rem;
   }
   p {
-    font-size: 16px;
+    font-size: 1.6rem;
   }
   ul.skill > div > li {
     width: 100%;
   }
   .div {
     min-height: 80vh;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: rgba(255, 0, 0, 1);
-    background-image: radial-gradient(
-        at 0% 100%,
-        rgb(151, 89, 35) 0%,
-        rgba(19, 19, 19, 0) 50%
-      ),
-      radial-gradient(at 83% 0%, rgb(47, 186, 210) 0%, rgba(19, 19, 19, 0) 55%),
-      radial-gradient(at 0% 0%, rgb(135, 26, 62) 0%, rgba(19, 19, 19, 0) 50%),
-      radial-gradient(at 28% 0%, rgb(139, 72, 32) 0%, rgba(19, 19, 19, 0) 50%),
-      radial-gradient(
-        at 82% 100%,
-        rgba(26, 22, 148, 0.79) 0%,
-        rgba(19, 19, 19, 0) 68%
-      ),
-      radial-gradient(at 79% 49%, rgb(152, 51, 158) 0%, rgba(19, 19, 19, 0) 50%),
-      radial-gradient(at 62% 41%, rgb(136, 87, 46) 0%, rgba(19, 19, 19, 0) 86%),
-      radial-gradient(at 0% 46%, rgb(87, 23, 28) 0%, rgba(19, 19, 19, 0) 100%);
-    color: rgb(255, 255, 255);
-  }
-  .div {
-    background-color: rgba(46, 48, 49, 0.2);
-  }
-  button {
-    background-color: rgba(46, 48, 49, 0.2);
-    border-color: rgb(172, 163, 150);
-    color: rgb(255, 255, 255);
   }
 }
